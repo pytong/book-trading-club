@@ -37,6 +37,7 @@ Pleas register the application with Twitter (https://apps.twitter.com) and get A
 Create a file named `.env` in the root directory. This file should contain:
 
 ```
+GOOGLE_API_KEY=your-google-api-key-here
 TWITTER_KEY=your-twitter-key-here
 TWITTER_SECRET=your-twitter-secret-here
 MONGO_URI=mongodb://localhost:27017/book-trading-club
