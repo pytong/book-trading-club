@@ -4,8 +4,9 @@ let mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     
     Book = new Schema({
-        name: String,
-        isbn: { type: Number },
+        title: String,
+        authors: Schema.Types.Mixed,
+        thumbnail: String,
         owner: String
     });
     
