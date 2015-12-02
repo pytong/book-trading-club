@@ -7,7 +7,7 @@ let mongoose = require('mongoose'),
         title: String,
         authors: Schema.Types.Mixed,
         thumbnail: String,
-        owner: String
+        username: String
     });
     
 module.exports = mongoose.model("Book", Book);

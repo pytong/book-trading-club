@@ -1,9 +1,10 @@
 "use strict";
 
 
-let	books = require('google-books-search'),
+let	configAuth = require('../config/auth'),
+    books = require('google-books-search'),
 	book_search_options = {
-		key: process.env.GOOGLE_API_KEY, // Your Google API key (Optional)
+		key: configAuth.googleAuth.apiKey, // Your Google API key (Optional)
 	    field: "title", // Search in a specified field (title, author, publisher, subject or isbn) (Optional)
 	    offset: 0, // The position in the collection at which to start the list of results (Default: 0)
 	    limit: 1, // The maximum number of results to return (Max 40) (Defult: 10)
@@ -35,4 +36,12 @@ module.exports = {
 		});
     },
     
+    getBooks: function(callback) {
+        Book.find({}, function(err, books) {
+            if(err) { return callback(false, "Failed to get books. Please try again later."); }
+
+            callback(true, books);
+        });
+    }
+
 }

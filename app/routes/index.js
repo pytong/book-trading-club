@@ -2,16 +2,33 @@
 
 let path = process.cwd(),
 	userUtil = require("../utils/userUtil"),
-	bookSearchUtil = require("../utils/bookSearchUtil");
+	bookUtil = require("../utils/bookUtil");
 
 
 module.exports = function (app, passport) {
 
-	app.get("/api/search_books", function(req, res) {
-		var searchTerms = req.query.searchTerms;
+	app.use(function(req, res, next) {
+		if(req.isAuthenticated()) {
+			req.username = req.user.username ? req.user.username : req.user.twitter.username;
+		}
 
-		bookSearchUtil.search(searchTerms, function(success, result) {
-			res.json({success: success, result: result})
+		next();
+	});
+
+	app.get("/api/books", function(req, res) {
+		bookUtil.getBooks(function(success, result) {
+			res.json({success: success, result: result});
+		});
+	});
+
+	app.post("/api/add_book", function(req, res) {
+		if(!req.isAuthenticated()) {
+			return res.json({success: false, message: "You are not authenticated."});
+		}
+
+		let searchTerms = req.query.searchTerms;
+		bookUtil.addBook(searchTerms, req.username, function(success, result) {
+			res.json({success: success, result: result});
 		});
 	});
 
@@ -24,9 +41,9 @@ module.exports = function (app, passport) {
 		});
 
 	app.get('/api/users/email_exists', function(req, res) {
-		var username = req.query.username;
+		let username = req.query.username;
 		userUtil.userExists({username: username}, function(result) {
-			var success = result.success,
+			let success = result.success,
 				exists = result.exists;
 
 			if(success === true && exists === false) {
@@ -38,7 +55,7 @@ module.exports = function (app, passport) {
 	})
 
 	app.get('/api/users/login_status', function(req, res) {
-		var status = req.isAuthenticated();
+		let status = req.isAuthenticated();
 		res.json({status: status});
 	});
 
