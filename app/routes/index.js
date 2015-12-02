@@ -15,22 +15,22 @@ module.exports = function (app, passport) {
 		next();
 	});
 
-	app.get("/api/books", function(req, res) {
-		bookUtil.getBooks(function(success, result) {
-			res.json({success: success, result: result});
-		});
-	});
+	app.route("/api/books")
+		.get(function(req, res) {
+			bookUtil.getBooks(function(success, result) {
+				res.json({success: success, result: result});
+			});
+		})
+		.post(function(req, res) {
+			if(!req.isAuthenticated()) {
+				return res.json({success: false, message: "You are not authenticated."});
+			}
 
-	app.post("/api/add_book", function(req, res) {
-		if(!req.isAuthenticated()) {
-			return res.json({success: false, message: "You are not authenticated."});
-		}
-
-		let searchTerms = req.query.searchTerms;
-		bookUtil.addBook(searchTerms, req.username, function(success, result) {
-			res.json({success: success, result: result});
+			let searchTerms = req.query.searchTerms;
+			bookUtil.addBook(searchTerms, req.username, function(success, result) {
+				res.json({success: success, result: result});
+			});
 		});
-	});
 
 	app.get('/api/users/profile', function(req, res) {
 			if(req.isAuthenticated()) {
