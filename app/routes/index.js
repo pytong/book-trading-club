@@ -15,6 +15,13 @@ module.exports = function (app, passport) {
 		next();
 	});
 
+	app.route("/api/mybooks")
+		.get(function(req, res) {
+			bookUtil.getMyBooks(req.username, function(success, result) {
+				res.json({success: success, result: result});
+			});
+		});
+
 	app.route("/api/books")
 		.get(function(req, res) {
 			bookUtil.getBooks(function(success, result) {

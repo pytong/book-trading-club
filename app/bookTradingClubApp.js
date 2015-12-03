@@ -1,4 +1,4 @@
-var app = angular.module("BookTradingClubApp", ["ngResource", "ngRoute"]);
+var app = angular.module("BookTradingClubApp", ["ngResource", "ngRoute", "720kb.tooltips"]);
 
 app.config(function($locationProvider, $routeProvider) {
 

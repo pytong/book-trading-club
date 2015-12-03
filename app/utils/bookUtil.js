@@ -38,7 +38,15 @@ module.exports = {
     
     getBooks: function(callback) {
         Book.find({}, function(err, books) {
-            if(err) { return callback(false, "Failed to get books. Please try again later."); }
+            if(err) { return callback(false, "Failed to get books."); }
+
+            callback(true, books);
+        });
+    },
+
+    getMyBooks: function(username, callback) {
+        Book.find({username: username}, function(err, books) {
+            if(err) { return callback(false, "Failed to get your books") }
 
             callback(true, books);
         });

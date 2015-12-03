@@ -1,0 +1,84 @@
+/********* Fonts **********/
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), url('../fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url('../fonts/Roboto-Medium.ttf') format('truetype');
+}
+
+/****** Main Styling ******/
+
+body {
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	margin: 0;
+	padding: 0;
+}
+
+form {
+	margin-bottom: 80px;
+}
+
+/********  Styling ********/
+
+.signin, .signup {
+	margin: 86px auto 0 auto;
+	text-align: center;
+}
+
+.twitter-btn {
+	margin: 20px 0 0 10px;
+	width: 208px;
+}
+
+.twitter-btn p {
+	margin: 8px 0 0 0;
+}
+
+.btn > img {
+	float: left;
+	margin-right: 5px;
+}
+
+.search-btn {
+	background: #FFF;
+	color: #000;
+	border: solid 2px #000;
+	padding: 0 30px;
+	font-size: 20px;
+}
+
+.search-btn:hover {
+	background: #000;
+	color: #FFF;
+}
+
+.submit-btn {
+  margin-top: 20px;
+  line-height: 32px;
+  font-size: 16px;
+}
+
+.book-image {
+	margin: 20px 0;
+	min-height: 193px;
+	max-height: 193px;
+}
+
+.error-message {
+	margin-top: 20px;
+	font-weight: bold;
+	font-style:italic;
+}
+
+.footer {
+	margin-bottom: 50px;
+}

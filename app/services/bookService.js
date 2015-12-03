@@ -8,5 +8,8 @@
             return $resource(appUrl + "/api/books?searchTerms=:searchTerms", {searchTerms: "@searchTerms"});
         }
 
+        this.mybooks = function() {
+            return $resource(appUrl + "/api/mybooks");
+        }
     }]);
 })(app);
