@@ -15,18 +15,18 @@
 
     <h1>My Books</h1>
     <div>Please sign in <a ng-show="!isLoggedIn" href="#/signin">here</a> to show your books.</div>
-    <div class="row">
+    <div class="row book">
         <div class="book col-sm-2" ng-repeat="mybook in mybooks">
-            <img tooltips tooltip-template="{{ mybook.title.substring(0, 51) }}" tooltip-size="small" tooltip-side="top" class="book-image" ng-src="{{ mybook.thumbnail || 'https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=128&h=193' }}" alt="{{mybook.title}}"/>
-            <button type="button" class="btn btn-danger btn-lg" ng-click="deleteBook(mybook._id)">x</button>
+            <img tooltips tooltip-template="{{ mybook.title.substring(0, 51) }}" tooltip-size="small" tooltip-side="bottom" class="book-image" ng-src="{{ mybook.thumbnail || 'https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=128&h=193' }}" alt="{{mybook.title}}"/>
+            <span class="delete-book" ng-click="deleteBook(mybook._id)">x</span>
         </div>
     </div>
 
     <h1>All Books</h1>
-    <div>Please sign in <a ng-show="!isLoggedIn" href="#/signin">here</a> to show your books.</div>
+    <div>Please sign in <a ng-show="!isLoggedIn" href="#/signin">here</a> to show all books.</div>
     <div class="row">
         <div class="book col-sm-2" ng-repeat="book in books">
-            <img tooltips tooltip-template="{{ book.title.substring(0, 51) }}" tooltip-size="small" tooltip-side="top" class="book-image" ng-src="{{ book.thumbnail || 'https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=128&h=193' }}" alt="{{book.title}}"/>
+            <img tooltips tooltip-template="{{ book.title.substring(0, 51) }}" tooltip-size="small" tooltip-side="bottom" class="book-image" ng-src="{{ book.thumbnail || 'https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=128&h=193' }}" alt="{{book.title}}"/>
         </div>
     </div>
 

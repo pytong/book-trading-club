@@ -33,7 +33,7 @@
                            if(res.success === false) {
                                $scope.errorMessage = res.message;
                            } else {
-                               $scope.books = res.result;
+                               $scope.render();
                            }
                            $(".searchterms").val("");
                         });
@@ -45,17 +45,18 @@
             BookService.books()
                 .delete({id: bookId}, function(res) {
                     if(res.success === true) {
-                        $scope.mybooks = $.grep($scope.mybooks, function(mybook, index ) {
-                            return mybook.id !== bookId;
-                        });
+                        $scope.render();
                     } else {
                         $scope.errorMessage = "Failed to delete book. Please try again later."
                     }
                 });
         }
 
-        $scope.getBooks({own: 1});
-        $scope.getBooks({});
+        $scope.render = function() {
+            $scope.getBooks({own: 1});
+            $scope.getBooks({});
+        }
 
+        $scope.render();
     }]);
 })(app);
