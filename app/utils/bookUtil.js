@@ -36,17 +36,17 @@ module.exports = {
 		});
     },
     
-    getBooks: function(callback) {
-        Book.find({}, function(err, books) {
-            if(err) { return callback(false, "Failed to get books."); }
+    deleteBook: function(params, callback) {
+        Book.remove(params, function(err, res) {
+            if(err) { return callback(false); }
 
-            callback(true, books);
+            callback(true);
         });
     },
 
-    getMyBooks: function(username, callback) {
-        Book.find({username: username}, function(err, books) {
-            if(err) { return callback(false, "Failed to get your books") }
+    getBooks: function(params, callback) {
+        Book.find(params, function(err, books) {
+            if(err) { return callback(false, "Failed to get books."); }
 
             callback(true, books);
         });

@@ -4,12 +4,9 @@
     app.service("BookService", ["$resource", "$location", function($resource, $location) {
         let appUrl = $location.protocol() + "://" + $location.host();
 
-        this.books = function(searchTerms) {
-            return $resource(appUrl + "/api/books?searchTerms=:searchTerms", {searchTerms: "@searchTerms"});
+        this.books = function() {
+            return $resource(appUrl + "/api/books?searchTerms=:searchTerms&id=:id&own=:own", {searchTerms: "@searchTerms", id: "@id", own: "@own"});
         }
 
-        this.mybooks = function() {
-            return $resource(appUrl + "/api/mybooks");
-        }
     }]);
 })(app);

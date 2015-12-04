@@ -15,16 +15,18 @@ module.exports = function (app, passport) {
 		next();
 	});
 
-	app.route("/api/mybooks")
-		.get(function(req, res) {
-			bookUtil.getMyBooks(req.username, function(success, result) {
-				res.json({success: success, result: result});
-			});
-		});
-
 	app.route("/api/books")
 		.get(function(req, res) {
-			bookUtil.getBooks(function(success, result) {
+			if(!req.isAuthenticated()) {
+				return res.json({success: false, message: "You are not authenticated."});
+			}
+
+			let params = {};
+			if(req.query.own === "1") {
+				params.username = req.username;
+			}
+
+			bookUtil.getBooks(params, function(success, result) {
 				res.json({success: success, result: result});
 			});
 		})
@@ -36,6 +38,23 @@ module.exports = function (app, passport) {
 			let searchTerms = req.query.searchTerms;
 			bookUtil.addBook(searchTerms, req.username, function(success, result) {
 				res.json({success: success, result: result});
+			});
+		})
+		.delete(function(req, res) {
+			if(!req.isAuthenticated()) {
+				return res.json({success: false, message: "You are not authenticated."});
+			}
+
+			let id = req.query.id,
+				params;
+
+			if(!id) {
+				return res.json({success: false, message: "No book id was provided."});
+			}
+
+			params = {_id: id, username: req.username};
+			bookUtil.deleteBook(params, function(success) {
+				res.json({success: success});
 			});
 		});
 
