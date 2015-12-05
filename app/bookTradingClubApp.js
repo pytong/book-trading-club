@@ -15,6 +15,10 @@ app.config(function($locationProvider, $routeProvider) {
         controller: "UserController",
         templateUrl: "/views/signup.html"
     })
+    .when("/settings", {
+        controller: "UserController",
+        templateUrl: "/views/settings.html"
+    })
     .otherwise({
        redirectTo: "/"
     });

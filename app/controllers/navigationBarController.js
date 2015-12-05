@@ -4,12 +4,14 @@
         $scope.showSignInLink = false;
         $scope.showRegisterLink = false;
         $scope.showLogoutLink = false;
+        $scope.showSettingsLink = false;
 
         UserService.loginStatus().get(function(res) {
             if(res.status === true) {
                 $scope.showLogoutLink = true;
                 $scope.showSignInLink = false;
                 $scope.showRegisterLink = false;
+                $scope.showSettingsLink = true;
 
                 if($location.path() === "/signin" || $location.path() === "/signup") {
                     window.location.href = "#/";
@@ -18,6 +20,7 @@
                 $scope.showLogoutLink = false;
                 $scope.showSignInLink = true;
                 $scope.showRegisterLink = true;
+                $scope.showSettingsLink = false;
             }
         });
 
