@@ -47,7 +47,6 @@ module.exports = {
     },
 
     saveUser: function(user, params, callback) {
-        console.log(params);
         if(params.name) {
             user.name = params.name;
         }

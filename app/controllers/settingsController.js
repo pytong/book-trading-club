@@ -20,7 +20,7 @@
                 .save(
                     function(res) { //success
                         if(res.success === true) {
-                            // do nothing or show a message
+                            window.location.href = "#/";
                         } else {
                             $scope.error = res.message;
                         }

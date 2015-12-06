@@ -30,12 +30,12 @@
                 } else {
                     BookService.books()
                         .save({searchTerms: searchTerms}, function(res) {
-                           if(res.success === false) {
-                               $scope.errorMessage = res.message;
-                           } else {
-                               $scope.render();
-                           }
-                           $(".searchterms").val("");
+                            if(res.success === false) {
+                                $scope.errorMessage = res.result;
+                            } else {
+                                $scope.render();
+                            }
+                            $(".searchterms").val("");
                         });
                 }
             });
