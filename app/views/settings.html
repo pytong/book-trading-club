@@ -2,4 +2,24 @@
     <navigation-bar></navigation-bar>
     <img src="/public/img/Book-Trading-Club-logo.png" />
 
+	<div class="alert alert-danger" role="alert" ng-show="error">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		<span class="sr-only">Error:</span>
+		{{ error }}
+	</div>
+
+    <form novalidate name="form" class="setting-form" ng-submit="updateProfile()" method="post">
+        <div class="col-md-8">
+            Name: <input type="text" class="form-control text-center" placeholder="Name" ng-model="user.name">
+        </div>
+        <div class="col-md-8">
+            City: <input type="text" class="form-control text-center" placeholder="City" ng-model="user.city">
+        </div>
+        <div class="col-md-8">
+            State: <input type="text" class="form-control text-center" placeholder="State" ng-model="user.state">
+        </div>
+        <div class="col-md-8">
+            <input type="submit" class="btn search-btn btn-block" value="Go" />
+        </div>
+    </form>
 </div>

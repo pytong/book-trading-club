@@ -1,8 +1,30 @@
+"use strict";
+
 (function(app) {
     app.controller("UserController", ["$scope", "UserService", function($scope, UserService) {
+        $scope.updateProfile = function() {
+            let name = $scope.user.name,
+                city = $scope.user.city,
+                state = $scope.user.state;
+
+            UserService.profile(name, city, state)
+                .save (
+                    function(res) { //success
+                        if(res.success === true) {
+                            // do nothing or show a message
+                        } else {
+                            $scope.error = res.message;
+                        }
+                    },
+                    function(err) { //err
+                        $scope.error = "Failed to update profile.";
+                    }
+                );
+        }
+
 
         $scope.signin = function() {
-            var username = $scope.user.email,
+            let username = $scope.user.email,
                 password = $scope.user.password;
             UserService.signin(username, password)
                 .get(
@@ -16,7 +38,7 @@
         }
 
         $scope.signup = function() {
-            var name = $scope.user.name,
+            let name = $scope.user.name,
                 username = $scope.user.email,
                 password = $scope.user.password;
 

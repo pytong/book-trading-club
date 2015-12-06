@@ -9,7 +9,9 @@ var mongoose = require('mongoose'),
 			name: String,
 			username: String
 		},
-		lastSearchTerms: String
+		name: String,
+		city: String,
+		state: String
 	});
 
 module.exports = mongoose.model('TwitterUser', TwitterUser);

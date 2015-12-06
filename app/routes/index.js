@@ -58,12 +58,25 @@ module.exports = function (app, passport) {
 			});
 		});
 
-	app.get('/api/users/profile', function(req, res) {
+	app.route('/api/users/profile')
+		.get(function(req, res) {
 			if(req.isAuthenticated()) {
 				res.json({success: true, profile: req.user});
 			} else {
 				res.json({success: false});
 			}
+		})
+		.post(function(req, res) {
+			if(!req.isAuthenticated()) {
+				return res.json({success: false, message: "You are not authenticated."});
+			}
+
+			let params = req.query;
+			params.username = req.username;
+
+			userUtil.updateSettings(params, function(result) {
+				res.json(result);
+			});
 		});
 
 	app.get('/api/users/email_exists', function(req, res) {

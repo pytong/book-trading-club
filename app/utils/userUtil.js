@@ -1,4 +1,7 @@
-var User = require('../models/users');
+"use strict";
+
+let User = require('../models/users'),
+    TwitterUser = require('../models/twitterUsers');
 
 module.exports = {
     userExists: function(params, callback) {
@@ -10,6 +13,47 @@ module.exports = {
             }
 
             return callback({success: true, exists: true});
+        });
+    },
+
+    updateSettings: function(params, callback) {
+        let message = "Failed to update settings.",
+            _this = this;
+
+        User.findOne({username: params.username}, function(err, user) {
+            if(err) { return callback({success: false, message: message}); }
+
+            if(typeof(user) !== "undefined" && user !== null) {
+                _this.saveUser(user, params, function(success) {
+                    if(success === false) {  return callback({success: false, message: message}); }
+                    return callback({success: true});
+                });
+
+            } else {
+                TwitterUser.findOne({"twitter.username": params.username}, function(err, user) {
+                    if(err) { return callback({success: false, message: message}); }
+
+                    if(typeof(user) !== "undefined" && user !== null) {
+                        _this.saveUser(user, params, function(success) {
+                            if(success === false) {  return callback({success: false, message: message}); }
+                            return callback({success: true});
+                        });
+                    } else {
+                        return callback({success: false, message: message});
+                    }
+                });
+            }
+        });
+    },
+
+    saveUser: function(user, params, callback) {
+        user.name = params.name;
+        user.city = params.city;
+        user.state = params.state;
+
+        user.save(function(err) {
+            if(err) { return callback(false); }
+            return callback(true);
         });
     }
 

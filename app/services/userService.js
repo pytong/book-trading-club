@@ -30,8 +30,12 @@
             return $resource(appUrl + "/api/users/logout");
         }
 
-        this.profile = function() {
-            return $resource(appUrl + "/api/users/profile");
+        this.profile = function(name, city, state) {
+            return $resource(appUrl + "/api/users/profile", {
+                name: name,
+                city: city,
+                state: state
+            });
         }
 
     }]);
