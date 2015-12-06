@@ -15,6 +15,7 @@
 
     <h1>My Books</h1>
     <div ng-show="!isLoggedIn">Please sign in <a href="#/signin">here</a> to show your books.</div>
+    <div ng-show="mybooks.length < 1">You haven't added any books yet.</div>
     <div class="row book">
         <div class="book col-sm-2" ng-repeat="mybook in mybooks">
             <img tooltips tooltip-template="{{ mybook.title.substring(0, 51) }} Owner: {{ mybook.username }}" tooltip-size="small" tooltip-side="bottom" class="book-image" ng-src="{{ mybook.thumbnail || 'https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=128&h=193' }}" alt="{{mybook.title}}"/>

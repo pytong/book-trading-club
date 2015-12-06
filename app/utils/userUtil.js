@@ -47,9 +47,18 @@ module.exports = {
     },
 
     saveUser: function(user, params, callback) {
-        user.name = params.name;
-        user.city = params.city;
-        user.state = params.state;
+        console.log(params);
+        if(params.name) {
+            user.name = params.name;
+        }
+
+        if(params.city) {
+            user.city = params.city;
+        }
+
+        if(params.state) {
+            user.state = params.state;
+        }
 
         user.save(function(err) {
             if(err) { return callback(false); }

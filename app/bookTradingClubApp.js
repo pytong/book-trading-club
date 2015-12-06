@@ -16,7 +16,7 @@ app.config(function($locationProvider, $routeProvider) {
         templateUrl: "/views/signup.html"
     })
     .when("/settings", {
-        controller: "UserController",
+        controller: "SettingsController",
         templateUrl: "/views/settings.html"
     })
     .otherwise({
