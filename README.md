@@ -12,7 +12,6 @@ Features:
 
 3. As an authenticated user, I can update my settings to store my full name, city, and state.
 
-4. As an authenticated user, I can propose a trade and wait for the other user to accept the trade.
 
 # Quick Start Guide
 
