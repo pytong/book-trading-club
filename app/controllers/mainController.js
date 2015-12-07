@@ -24,6 +24,8 @@
         }
 
         $scope.addBook = function(searchTerms) {
+            $scope.errorMessage = "";
+
             UserService.loginStatus().get(function(res) {
                 if(res.status === false) {
                     window.location.href = "#/signin";
@@ -42,6 +44,8 @@
         }
 
         $scope.deleteBook = function(bookId) {
+            $scope.errorMessage = "";
+
             BookService.books()
                 .delete({id: bookId}, function(res) {
                     if(res.success === true) {
