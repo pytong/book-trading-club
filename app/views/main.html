@@ -18,7 +18,7 @@
     <div ng-show="mybooks.length < 1">You haven't added any books yet.</div>
     <div class="row book">
         <div class="book col-sm-2" ng-repeat="mybook in mybooks">
-            <img tooltips tooltip-template="{{ mybook.title.substring(0, 51) }} Owner: {{ mybook.username }}" tooltip-size="small" tooltip-side="bottom" class="book-image" ng-src="{{ mybook.thumbnail || 'https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=128&h=193' }}" alt="{{mybook.title}}"/>
+            <img tooltips tooltip-template="{{ mybook.title.substring(0, 51) }} Owner: {{ mybook.username }}" tooltip-size="small" tooltip-side="bottom" class="book-image" src="{{ mybook.thumbnail || 'https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=128&h=193' }}" alt="{{mybook.title}}"/>
             <span class="delete-book" ng-click="deleteBook(mybook._id)">x</span>
         </div>
     </div>
@@ -27,7 +27,7 @@
     <div ng-show="!isLoggedIn">Please sign in <a href="#/signin">here</a> to show all books.</div>
     <div class="row">
         <div class="book col-sm-2" ng-repeat="book in books">
-            <img tooltips tooltip-template="{{ book.title.substring(0, 51) }} Owner: {{ book.username }}" tooltip-size="small" tooltip-side="bottom" class="book-image" ng-src="{{ book.thumbnail || 'https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=128&h=193' }}" alt="{{book.title}}"/>
+            <img tooltips tooltip-template="{{ book.title.substring(0, 51) }} Owner: {{ book.username }}" tooltip-size="small" tooltip-side="bottom" class="book-image" src="{{ book.thumbnail || 'https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=128&h=193' }}" alt="{{book.title}}"/>
         </div>
     </div>
 
