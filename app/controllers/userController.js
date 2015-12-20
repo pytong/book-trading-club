@@ -4,7 +4,7 @@
     app.controller("UserController", ["$scope", "UserService", function($scope, UserService) {
 
         $scope.signin = function() {
-            let username = $scope.user.email,
+            var username = $scope.user.email,
                 password = $scope.user.password;
             UserService.signin(username, password)
                 .get(
@@ -18,7 +18,7 @@
         }
 
         $scope.signup = function() {
-            let name = $scope.user.name,
+            var name = $scope.user.name,
                 username = $scope.user.email,
                 password = $scope.user.password;
 
