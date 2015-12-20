@@ -15,9 +15,9 @@
                         $scope.errorMessage += (" " + res.result);
                     } else {
                         if(params.own === 1) {
-                            $scope.mybooks = res.result;
+                            $scope.mybooks = res.result.reverse();
                         } else {
-                            $scope.books = res.result;
+                            $scope.books = res.result.reverse();
                         }
                     }
                 });
